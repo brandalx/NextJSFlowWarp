@@ -13,6 +13,7 @@
     "react": "latest",
     "react-dom": "latest",
     "react-icons": "^4.11.0",
+    "supabase": ">=1.8.1",
     "tailwind-merge": "^1.14.0"
   },
   "devDependencies": {
