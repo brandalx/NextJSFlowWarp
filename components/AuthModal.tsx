@@ -1,5 +1,5 @@
 "use client";
-
+import { ThemeSupa } from "@supabase/auth-ui-shared";
 import {
   useSessionContext,
   useSupabaseClient,
@@ -19,7 +19,12 @@ const AuthModal = () => {
       isOpen
       onChange={() => {}}
     >
-      <Auth supabaseClient={supabaseClient} />
+      <Auth
+        appearance={{
+          theme: ThemeSupa,
+        }}
+        supabaseClient={supabaseClient}
+      />
     </Modal>
   );
 };
