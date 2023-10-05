@@ -37,15 +37,26 @@ const UploadModal = () => {
           {...register("title", { required: true })}
           placeholder="Song title"
         />
-        <Input
-          id="song"
-          type="file"
-          disabled={isLoading}
-          {...register("song", { required: true })}
-          accept=".mp3"
-        />
+
         <div>
           <div className="pb-1">Select a song file</div>
+          <Input
+            id="song"
+            type="file"
+            disabled={isLoading}
+            {...register("song", { required: true })}
+            accept=".mp3"
+          />
+        </div>
+        <div>
+          <div className="pb-1">Select an image</div>
+          <Input
+            id="image"
+            type="file"
+            disabled={isLoading}
+            {...register("image", { required: true })}
+            accept="image/*"
+          />
         </div>
       </form>
     </Modal>
