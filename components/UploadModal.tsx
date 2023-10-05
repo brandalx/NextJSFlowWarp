@@ -4,7 +4,7 @@ import { useForm, SubmitHandler, FieldValues } from "react-hook-form";
 import useUploadModal from "@/hooks/useUploadModal";
 import Modal from "./Modal";
 import { useState } from "react";
-import { Input } from "postcss";
+import Input from "./Input";
 const UploadModal = () => {
   const [isLoading, setIsLoading] = useState();
   const { register, handleSubmit, reset } = useForm<FieldValues>({
