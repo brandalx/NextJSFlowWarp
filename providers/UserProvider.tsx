@@ -9,3 +9,5 @@ interface UserProviderProps {
 const UserProvider: React.FC<UserProviderProps> = ({ children }) => {
   return <MyUserContextProvider>{children}</MyUserContextProvider>;
 };
+
+export default UserProvider;
