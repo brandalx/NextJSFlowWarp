@@ -6,10 +6,10 @@ import Modal from "./Modal";
 import { useState } from "react";
 import Input from "./Input";
 import Button from "./Button";
-
 import { useUser } from "@/hooks/useUser";
 import { toast } from "react-hot-toast";
 import { useSupabaseClient } from "@supabase/auth-helpers-react";
+import { useRouter } from "next/navigation";
 const UploadModal = () => {
   const [isLoading, setIsLoading] = useState(false);
   const { register, handleSubmit, reset } = useForm<FieldValues>({
@@ -29,6 +29,8 @@ const UploadModal = () => {
       uploadModal.onClose();
     }
   };
+
+  const router = useRouter();
   const onSubmit: SubmitHandler<FieldValues> = async (values) => {
     try {
       setIsLoading(true);
@@ -56,6 +58,40 @@ const UploadModal = () => {
       }
 
       //uploadimage
+      const { data: imageData, error: imageError } =
+        await supabaseClient.storage
+          .from("images")
+          .upload(`images-${values.title}-${uniqueID}`, imageFile, {
+            cacheControl: "3600",
+            upsert: false,
+          });
+
+      if (imageError) {
+        setIsLoading(false);
+        return toast.error("Failed to upload your image");
+      }
+
+      const { error: supabaseError } = await supabaseClient
+        .from("songs")
+        .insert({
+          user_id: user.id,
+          title: values.title,
+          author: values.author,
+
+          image_path: imageData.path,
+          song_path: songData.path,
+        });
+
+      if (supabaseError) {
+        setIsLoading(false);
+        return toast.error(supabaseError.message);
+      }
+
+      router.refresh();
+      setIsLoading(false);
+      toast.success("Song created!");
+      reset();
+      uploadModal.onClose();
     } catch (error) {
       toast.error("Something went wrong :(");
     } finally {
@@ -75,6 +111,12 @@ const UploadModal = () => {
           disabled={isLoading}
           {...register("title", { required: true })}
           placeholder="Song title"
+        />
+        <Input
+          id="author"
+          disabled={isLoading}
+          {...register("author", { required: true })}
+          placeholder="Song author"
         />
 
         <div>
