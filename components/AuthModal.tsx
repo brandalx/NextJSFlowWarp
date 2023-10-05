@@ -8,6 +8,7 @@ import Modal from "./Modal";
 import { useRouter } from "next/navigation";
 import { Auth } from "@supabase/auth-ui-react";
 import useAuthModal from "@/hooks/useAuthModal";
+import { useEffect } from "react";
 const AuthModal = () => {
   const supabaseClient = useSupabaseClient();
   const router = useRouter();
@@ -18,6 +19,13 @@ const AuthModal = () => {
       onClose();
     }
   };
+
+  useEffect(() => {
+    if (session) {
+      router.refresh();
+      onClose();
+    }
+  }, [session, router, onClose]);
   return (
     <Modal
       title="Welcome back"
@@ -26,7 +34,7 @@ const AuthModal = () => {
       onChange={() => {}}
     >
       <Auth
-        providers={["facebook", "google", "linkedin", "twitter"]}
+        providers={[]}
         magicLink
         theme="dark"
         appearance={{
