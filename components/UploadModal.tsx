@@ -5,6 +5,7 @@ import useUploadModal from "@/hooks/useUploadModal";
 import Modal from "./Modal";
 import { useState } from "react";
 import Input from "./Input";
+import Button from "./Button";
 const UploadModal = () => {
   const [isLoading, setIsLoading] = useState();
   const { register, handleSubmit, reset } = useForm<FieldValues>({
@@ -58,6 +59,13 @@ const UploadModal = () => {
             accept="image/*"
           />
         </div>
+        <Button
+          disabled={isLoading}
+          type="submit"
+          className="text-white font-medium"
+        >
+          Create
+        </Button>
       </form>
     </Modal>
   );
