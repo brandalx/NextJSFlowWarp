@@ -19,8 +19,9 @@ const ModalProvider = () => {
         description="test description"
         isOpen
         onChange={() => {}}
-      />
-      test children pass
+      >
+        test children pass
+      </Modal>
     </>
   );
 };
