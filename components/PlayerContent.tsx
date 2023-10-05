@@ -5,7 +5,7 @@ import MediaItem from "./MediaItem";
 import LikeButton from "./LikeButton";
 import { AiFillStepBackward, AiFillStepForward } from "react-icons/ai";
 import { HiSpeakerWave, HiSpeakerXMark } from "react-icons/hi2";
-
+import Slider from "./Slider";
 interface PlayerContentProps {
   song: Song;
   songUrl: string;
@@ -51,6 +51,7 @@ const PlayerContent: React.FC<PlayerContentProps> = ({ song, songUrl }) => {
         <div className="flex items-center gap-x-2 w-[120px]">
           {" "}
           <VolumeIcon onClick={() => {}} className="cursor-pointer" size={34} />
+          <Slider />
         </div>
       </div>
     </div>
