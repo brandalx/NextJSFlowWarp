@@ -21,6 +21,7 @@ const SearchContent: React.FC<SearchContentProps> = ({ songs }) => {
           <div className="flex-1">
             <MediaItem data={song} onClick={() => {}} />
           </div>
+          {/* todo: add like button here */}
         </div>
       ))}
     </div>
