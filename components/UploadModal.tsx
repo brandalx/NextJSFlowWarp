@@ -6,8 +6,9 @@ import Modal from "./Modal";
 import { useState } from "react";
 import Input from "./Input";
 import Button from "./Button";
+import { toast } from "react-hot-toast";
 const UploadModal = () => {
-  const [isLoading, setIsLoading] = useState();
+  const [isLoading, setIsLoading] = useState(false);
   const { register, handleSubmit, reset } = useForm<FieldValues>({
     defaultValues: {
       author: "",
@@ -23,7 +24,15 @@ const UploadModal = () => {
       uploadModal.onClose();
     }
   };
-  const onSubmit: SubmitHandler<FieldValues> = async (values) => {};
+  const onSubmit: SubmitHandler<FieldValues> = async (values) => {
+    try {
+      setIsLoading(true);
+    } catch (error) {
+      toast.error("Something went wrong :(");
+    } finally {
+      setIsLoading(false);
+    }
+  };
   return (
     <Modal
       title="Add song"
