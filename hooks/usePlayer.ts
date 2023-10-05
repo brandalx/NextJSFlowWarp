@@ -14,3 +14,5 @@ const usePlayer = create<PlayerStore>((set) => ({
   setIds: (ids: string[]) => set({ ids: ids }),
   reset: () => set({ ids: [], activeId: undefined }),
 }));
+
+export default usePlayer;
