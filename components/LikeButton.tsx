@@ -6,6 +6,7 @@ import { useSessionContext } from "@supabase/auth-helpers-react";
 import { error } from "console";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
+import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
 
 interface LikeButtonProps {
   songId: string;
@@ -32,7 +33,12 @@ const LikeButton: React.FC<LikeButtonProps> = ({ songId }) => {
     };
     fetchData();
   }, [songId, supabaseClient, user?.id]);
-  return <div>Like button</div>;
+  const Icon = isLiked ? AiFillHeart : AiOutlineHeart;
+  return (
+    <button>
+      <Icon color={isLiked ? "#22c55e" : "white"} size={25} />
+    </button>
+  );
 };
 
 export default LikeButton;
