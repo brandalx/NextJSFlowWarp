@@ -6,6 +6,6 @@ interface UserProviderProps {
   children: React.ReactNode;
 }
 
-const UerProvider: React.FC<UserProviderProps> = ({ children }) => {
+const UserProvider: React.FC<UserProviderProps> = ({ children }) => {
   return <MyUserContextProvider>{children}</MyUserContextProvider>;
 };
