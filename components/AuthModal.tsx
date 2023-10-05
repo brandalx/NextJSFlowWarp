@@ -21,6 +21,7 @@ const AuthModal = () => {
     >
       <Auth
         providers={["facebook", "google", "linkedin", "twitter"]}
+        magicLink
         theme="dark"
         appearance={{
           theme: ThemeSupa,
