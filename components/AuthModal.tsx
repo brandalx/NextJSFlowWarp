@@ -34,7 +34,7 @@ const AuthModal = () => {
       onChange={() => {}}
     >
       <Auth
-        providers={[]}
+        providers={["google"]}
         magicLink
         theme="dark"
         appearance={{
