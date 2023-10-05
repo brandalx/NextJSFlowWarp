@@ -1,5 +1,6 @@
 "use client";
 
+import Modal from "@/components/Modal";
 import { useEffect, useState } from "react";
 
 const ModalProvider = () => {
@@ -11,7 +12,11 @@ const ModalProvider = () => {
 
   if (!isMounted) return null;
 
-  return <>Modal</>;
+  return (
+    <>
+      <Modal />
+    </>
+  );
 };
 
 export default ModalProvider;
