@@ -1,12 +1,15 @@
 "use client";
-
+import unuqid from "uniqid";
 import { useForm, SubmitHandler, FieldValues } from "react-hook-form";
 import useUploadModal from "@/hooks/useUploadModal";
 import Modal from "./Modal";
 import { useState } from "react";
 import Input from "./Input";
 import Button from "./Button";
+
+import { useUser } from "@/hooks/useUser";
 import { toast } from "react-hot-toast";
+import { useSupabaseClient } from "@supabase/auth-helpers-react";
 const UploadModal = () => {
   const [isLoading, setIsLoading] = useState(false);
   const { register, handleSubmit, reset } = useForm<FieldValues>({
@@ -17,6 +20,8 @@ const UploadModal = () => {
       image: null,
     },
   });
+  const supabaseClient = useSupabaseClient();
+  const { user } = useUser();
   const uploadModal = useUploadModal();
   const onChange = (open: boolean) => {
     if (!open) {
@@ -27,6 +32,30 @@ const UploadModal = () => {
   const onSubmit: SubmitHandler<FieldValues> = async (values) => {
     try {
       setIsLoading(true);
+
+      const imageFile = values.image?.[0];
+      const songFile = values.song?.[0];
+
+      if (!imageFile || !songFile || !user) {
+        toast.error("Missing fileds or unauthorized");
+        return;
+      }
+
+      const uniqueID = unuqid();
+      //uploading songs
+
+      const { data: songData, error: songError } = await supabaseClient.storage
+        .from("songs")
+        .upload(`song-${values.title}-${uniqueID}`, songFile, {
+          cacheControl: "3600",
+          upsert: false,
+        });
+      if (songError) {
+        setIsLoading(false);
+        return toast.error("Failed to upload your song");
+      }
+
+      //uploadimage
     } catch (error) {
       toast.error("Something went wrong :(");
     } finally {
