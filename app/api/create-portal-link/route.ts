@@ -5,7 +5,6 @@ import { NextResponse } from "next/server";
 import { stripe } from "@/libs/stripe";
 import { getUrl } from "@/libs/helpers";
 import { createOrRetrieveCustomer } from "@/libs/supabaseAdmin";
-import { getURL } from "next/dist/shared/lib/utils";
 
 export async function POST() {
   try {
@@ -26,7 +25,7 @@ export async function POST() {
     if (!customer) throw Error("Could not get customer");
     const { url } = await stripe.billingPortal.sessions.create({
       customer,
-      return_url: `${getURL()}/account`,
+      return_url: `${getUrl()}/account`,
     });
 
     return NextResponse.json({ url });
