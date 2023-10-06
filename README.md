@@ -1,6 +1,24 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# FlowWarp Website
+
+Welcome to the repository of the FlowWarp website!
+
+## Live Version
+
+You can view the live version of the website at [https://flowwrap.vercel.app](https://flowwrap.vercel.app).
+
+## Preview
+
+![FlowWarp Preview](https://i.postimg.cc/Wz6DnG04/Frame-1.jpg)
+
+## About
+
+Ready more about FlowWarp on [brandnolandev.com](http://brandnolandev.com)
 
 ## Getting Started
+
+This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+
+
 
 First, run the development server:
 
