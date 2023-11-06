@@ -8,8 +8,7 @@ You can view the live version of the website at [https://flowwrap.vercel.app](ht
 
 ## Preview
 
-![FlowWarp Preview](https://i.postimg.cc/BnXfVfX2/Frame-12.jpg)
-![FlowWarp Preview](https://i.postimg.cc/ZnVXwwmf/Frame-24.jpg)
+![FrameIo Preview](https://i.postimg.cc/Wz6DnG04/Frame-1.jpg)
 
 ## About
 
